@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BFF-Express</title>
+  <!-- Latest 
+    compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+     @media (max-width: 768px){ 
+        .form-check-inline{
+        display: block; 
+        }
+    }
+
+</style>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>M1 Interactive</h1>
+      <h3>Register now!</h3>
+      <hr>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Your Profile</strong></h3>
+          </div>
+          <div class="panel-body">
+            <!-- Post defaults to /survey, which is not what I want. The action callback enables posting the way I want to do it -->
+            <form action= "JavaScript:postIt()" id = "survey" method="POST" role="form">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control needs-validation" id="name" placeholder="Enter name here" required>
+                </div>
+                <div class = "invalid-feedback">Please enter your name!</div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control needs-validation" id="email" placeholder="Enter email here" required>
+                </div>
+                <div class = "invalid-feedback">Please enter your email!</div>
+                <div class="form-group">
+                    <label for="picture">Picture</label>
+                    <input type="file" class="form-control needs-validation" id="picture" accept="image/*">
+                </div>
+                <div class = "invalid-feedback">Please upload your picture!</div>
+                                           
+            <br>
+            <button type="submit" class="btn btn-primary btn-md" id="find-btn"><i class = "fas fa-search"></i> Submit information</button>
+        </form>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+            event.preventDefault();
+        
+            if (form.checkValidity() === false) {
+               event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+         
+            }, false);
+        });
+    }, false);
+    })();
+   
+    function postIt() {
+        
+            var newUser = {
+                name: $("#name").val(),
+                photo: $("#picture").val(),
+                email: $("#email").val()
+            };
+      
+        console.log(newUser);
+        $.post("/api/register", newUser).then(function(data){
+           console.log(data);
+        });
+    }
+  </script>
+
+</body>
+</html>
