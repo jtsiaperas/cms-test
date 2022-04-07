@@ -32,7 +32,7 @@ module.exports = function(app){
         .catch((error) => {
             console.error(error)
         })
-        res.send("Registered!");
+        res.json({"message":"Registered!"});
     });
 
 };
