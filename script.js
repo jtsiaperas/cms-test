@@ -81,6 +81,7 @@ function processFile(dataURL, fileType) {
 function sendFile(fileData) {
 	var formData = new FormData();
 	formData.append('image', fileData);
+	console.log(fileData);
 	$.ajax({
 		type: 'POST',
 		url: 'https://api.imgbb.com/1/upload?key=0dde1cc44c2c2ff8cbb8005c6a71c321',
