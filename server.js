@@ -31,19 +31,17 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.get("/api/user/:id", /*authCheck,*/ function(req,res){
+app.get("/api/user/", /*authCheck,*/ function(req,res){
 
-	db.User.findOne({_id: req.params.id})
-	.then(user => res.json(user))
+	db.User.find()
+	.then(users => res.json(users))
 	.catch(err => res.json(err));
 });
 
 
 app.post("/api/user", /*authCheck,*/ function(req,res){
-  let user = req.body.user.toString();
   console.log(user);
-
-	db.User.findOneAndUpdate({_id: user},{_id: user},{upsert: true})
+	db.User.findOneAndUpdate({email: user.email},{email: user.email, name: user.name, picture: user.picture},{upsert: true})
 	.then(user => res.json(user))
 	.catch(err => res.json(err));
 });
