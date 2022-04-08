@@ -1,4 +1,3 @@
-var friends = require("../data/friends.js");
 
 
 module.exports = function(app){
@@ -12,7 +11,7 @@ module.exports = function(app){
     
     app.post("/api/user", function(req,res){
         console.log(req.body);
-        
+        retuurn 
         res.json(res.body);
     });
 
