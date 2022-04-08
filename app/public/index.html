@@ -118,8 +118,8 @@
                 email: $("#email").val()
             };
       
-        console.log(newUser);
-        $.post("/api/register", newUser).then(function(data){
+        //console.log(newUser);
+        $.post("/api/user", newUser).then(function(data){
            console.log(data);
         });
     }
