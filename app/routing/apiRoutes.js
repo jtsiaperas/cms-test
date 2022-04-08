@@ -12,7 +12,7 @@ module.exports = function(app){
     
     app.post("/api/register", function(req,res){
         console.log(req.body);
-        var newUser = new friends.Friend(req.body.name,req.body.photo,req.body.email);
+        //var newUser = new friends.Friend(req.body.name,req.body.photo,req.body.email);
         // using Twilio SendGrid's v3 Node.js Library
         // https://github.com/sendgrid/sendgrid-nodejs
         const sgMail = require('@sendgrid/mail')
