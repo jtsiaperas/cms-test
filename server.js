@@ -68,6 +68,7 @@ app.post("/api/user", function(req,res){
         })
 });
 
+
 mongoose.connect(MONGODB_URI).then(
     () => {
         console.log("mongodb connected");
