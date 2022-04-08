@@ -18,15 +18,17 @@ var port = process.env.PORT || 3000;
 var db = mysql.createConnection({
     host:"localhost",
     user:"mysql",
-    password:"mysqlpass1!"
+    password:"mysqlpass1!",
+    database:'mydb'
 })
 db.connect(function(err){
     if(err) throw err;
     console.log("Connected to mysql");
-    con.query("CREATE DATABASE mydb", function (err, result) {
-        if (err) throw err;
-        console.log("Database created");
-    });
+    // var sql = "ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
+    // db.query(sql, function (err, result) {
+    //     if (err) throw err;
+    //     console.log("Table created");
+    // });
 })
 
 app.listen(port, function() {
