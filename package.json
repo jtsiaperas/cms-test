@@ -2,6 +2,7 @@
   "dependencies": {
     "@cloudinary/url-gen": "^1.7.0",
     "@sendgrid/mail": "^7.6.2",
+    "basic-auth": "^2.0.1",
     "blueimp-file-upload": "^9.34.0",
     "cloudinary-jquery-file-upload": "^2.12.3",
     "cors": "^2.8.5",
@@ -9,8 +10,14 @@
     "express": "^4.17.3",
     "express-openid-connect": "^2.7.2",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
     "mysql": "^2.18.1",
-    "path": "^0.12.7"
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "tsscmp": "^1.0.6"
   }
 }

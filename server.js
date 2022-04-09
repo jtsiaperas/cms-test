@@ -14,6 +14,54 @@ require('dotenv').config();
 app.use(cors());
 // Sets up the Express App
 // =============================================================
+// const { auth } = require('express-openid-connect');
+
+// const config = {
+// authRequired: true,
+// auth0Logout: true,
+// secret: process.env.SECRET,
+// baseURL: 'http://localhost:3000',
+// clientID: 'iQ7y6Vj496fwTmUaARdE1CVDmt0f2BaY',
+// issuerBaseURL: 'https://odakotalogin.auth0.com'
+// };
+
+// // auth router attaches /login, /logout, and /callback routes to the baseURL
+// app.use(auth(config));
+function authentication(req, res, next) {
+    var authheader = req.headers.authorization;
+    
+    if(req.path == "/api/user")
+    {
+        
+        if (!authheader) {
+            var err = new Error('You are not authenticated!');
+            res.setHeader('WWW-Authenticate', 'Basic');
+            err.status = 401;
+            return next(err)
+        }
+ 
+        var auth = new Buffer.from(authheader.split(' ')[1],
+        'base64').toString().split(':');
+        var user = auth[0];
+        var pass = auth[1];
+ 
+        if (user == 'admin' && pass == 'password') {
+ 
+            // If Authorized user
+            next();
+        } else {
+            var err = new Error('You are not authenticated!');
+            res.setHeader('WWW-Authenticate', 'Basic');
+            err.status = 401;
+            return next(err);
+        }
+    }
+    else{
+        next();
+    }
+ 
+}
+app.use(authentication);
 
 const port = process.env.PORT || 3000;
 
@@ -78,4 +126,3 @@ mongoose.connect(MONGODB_URI).then(
 app.listen(port, function() {
     console.log("App listening on PORT " + port);
 });
-
