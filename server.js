@@ -30,7 +30,7 @@ app.use(cors());
 function authentication(req, res, next) {
     var authheader = req.headers.authorization;
     
-    if(req.path == "/api/user")
+    if(req.path == "/api/users")
     {
         
         if (!authheader) {
@@ -81,7 +81,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.get("/api/user/", function(req,res){
+app.get("/api/users/", function(req,res){
 
 	db.User.find()
 	.then(users => res.json(users))

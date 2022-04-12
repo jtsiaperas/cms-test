@@ -30,7 +30,7 @@
         </div>
         <hr>
         <script type = "text/javascript">
-          $.get("/api/user").then(function (data){
+          $.get("/api/users").then(function (data){
             console.log(data);
             data.forEach(element => {
                $('#users').append(`<div class="row mb-2"><div class='col-lg-4'><img style='width:250px; height:200px;' src=${element.picture} /> </div><div class='col-lg-4 my-auto'><p>${element.name}</p></div><div class='col-lg-4 my-auto'><p>${element.email}</p></div> </div>`);
